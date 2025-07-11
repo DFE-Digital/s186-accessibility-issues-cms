@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/76c4c747-87a5-47c6-97f3-7248276192f1/resourceGroups/s186d01-statement-service/providers/Microsoft.Web/sites/statement-service-cms",
+    "appService.deploySubpath": "."
+}
