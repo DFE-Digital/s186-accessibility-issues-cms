@@ -373,6 +373,296 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiIssueCommentIssueComment
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'issue_comments';
+  info: {
+    displayName: 'Issue comment';
+    pluralName: 'issue-comments';
+    singularName: 'issue-comment';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    addedBy: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    comment: Schema.Attribute.Text;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    issue: Schema.Attribute.Relation<'manyToOne', 'api::issue.issue'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::issue-comment.issue-comment'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiIssueRetestCommentIssueRetestComment
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'issue_retest_comments';
+  info: {
+    displayName: 'Issue retest comment';
+    pluralName: 'issue-retest-comments';
+    singularName: 'issue-retest-comment';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    addedBy: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    comment: Schema.Attribute.Text;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    issue_retest: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::issue-retest.issue-retest'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::issue-retest-comment.issue-retest-comment'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiIssueRetestIssueRetest extends Struct.CollectionTypeSchema {
+  collectionName: 'issue_retests';
+  info: {
+    displayName: 'Issue retest';
+    pluralName: 'issue-retests';
+    singularName: 'issue-retest';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    assignedTo: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    issue_retest_comments: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::issue-retest-comment.issue-retest-comment'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::issue-retest.issue-retest'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    state: Schema.Attribute.Enumeration<['Open', 'Closed']> &
+      Schema.Attribute.DefaultTo<'Open'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiIssueIssue extends Struct.CollectionTypeSchema {
+  collectionName: 'issues';
+  info: {
+    displayName: 'Issue';
+    pluralName: 'issues';
+    singularName: 'issue';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    assignedTo: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    dateIdentified: Schema.Attribute.Date;
+    description: Schema.Attribute.Text;
+    howAdded: Schema.Attribute.Enumeration<['API', 'Import', 'Manual']>;
+    issue_comments: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::issue-comment.issue-comment'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::issue.issue'> &
+      Schema.Attribute.Private;
+    planToFix: Schema.Attribute.Boolean;
+    planToFixDate: Schema.Attribute.Date;
+    publishedAt: Schema.Attribute.DateTime;
+    reasonForNotFixing: Schema.Attribute.Text;
+    service: Schema.Attribute.Relation<'manyToOne', 'api::service.service'>;
+    source: Schema.Attribute.Enumeration<
+      ['Manual testing', 'Automated testing', 'Audit', 'Complaint', 'Feedback']
+    >;
+    state: Schema.Attribute.Enumeration<['Open', 'Closed']> &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Open'>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiServiceUrlServiceUrl extends Struct.CollectionTypeSchema {
+  collectionName: 'service_urls';
+  info: {
+    displayName: 'Service Url';
+    pluralName: 'service-urls';
+    singularName: 'service-url';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    enrolledStatus: Schema.Attribute.Boolean;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::service-url.service-url'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    service: Schema.Attribute.Relation<'manyToOne', 'api::service.service'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    url: Schema.Attribute.String;
+  };
+}
+
+export interface ApiServiceService extends Struct.CollectionTypeSchema {
+  collectionName: 'services';
+  info: {
+    displayName: 'Service';
+    pluralName: 'services';
+    singularName: 'service';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    fipsId: Schema.Attribute.String;
+    issues: Schema.Attribute.Relation<'oneToMany', 'api::issue.issue'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::service.service'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    service_urls: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::service-url.service-url'
+    >;
+    serviceId: Schema.Attribute.BigInteger &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    statement_settings: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::statement-setting.statement-setting'
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiStatementSettingStatementSetting
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'statement_settings';
+  info: {
+    displayName: 'Statement setting';
+    pluralName: 'statement-settings';
+    singularName: 'statement-setting';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::statement-setting.statement-setting'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    service: Schema.Attribute.Relation<'manyToOne', 'api::service.service'>;
+    setting: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    value: Schema.Attribute.Text;
+  };
+}
+
+export interface ApiStatementTemplateStatementTemplate
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'statement_templates';
+  info: {
+    displayName: 'Statement template';
+    pluralName: 'statement-templates';
+    singularName: 'statement-template';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    conformanceLevel: Schema.Attribute.Enumeration<['AA', 'AAA']>;
+    content: Schema.Attribute.Text;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::statement-template.statement-template'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    type: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    wcagVersion: Schema.Attribute.Enumeration<
+      ['WCAG 2.1', 'WCAG 2.2', 'WCAG 3.0']
+    >;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -882,6 +1172,14 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::issue-comment.issue-comment': ApiIssueCommentIssueComment;
+      'api::issue-retest-comment.issue-retest-comment': ApiIssueRetestCommentIssueRetestComment;
+      'api::issue-retest.issue-retest': ApiIssueRetestIssueRetest;
+      'api::issue.issue': ApiIssueIssue;
+      'api::service-url.service-url': ApiServiceUrlServiceUrl;
+      'api::service.service': ApiServiceService;
+      'api::statement-setting.statement-setting': ApiStatementSettingStatementSetting;
+      'api::statement-template.statement-template': ApiStatementTemplateStatementTemplate;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

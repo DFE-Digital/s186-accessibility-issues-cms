@@ -1,0 +1,27 @@
+{
+    "kind": "collectionType",
+    "collectionName": "statement_settings",
+    "info": {
+        "singularName": "statement-setting",
+        "pluralName": "statement-settings",
+        "displayName": "Statement setting"
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "setting": {
+            "type": "string"
+        },
+        "value": {
+            "type": "text"
+        },
+        "service": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "api::service.service",
+            "inversedBy": "statement_settings"
+        }
+    }
+}

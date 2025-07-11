@@ -1,0 +1,78 @@
+{
+    "kind": "collectionType",
+    "collectionName": "issues",
+    "info": {
+        "singularName": "issue",
+        "pluralName": "issues",
+        "displayName": "Issue"
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "title": {
+            "type": "string",
+            "required": true
+        },
+        "description": {
+            "type": "text"
+        },
+        "state": {
+            "type": "enumeration",
+            "required": true,
+            "default": "Open",
+            "enum": [
+                "Open",
+                "Closed"
+            ]
+        },
+        "source": {
+            "type": "enumeration",
+            "enum": [
+                "Manual testing",
+                "Automated testing",
+                "Audit",
+                "Complaint",
+                "Feedback"
+            ]
+        },
+        "dateIdentified": {
+            "type": "date"
+        },
+        "planToFix": {
+            "type": "boolean"
+        },
+        "planToFixDate": {
+            "type": "date"
+        },
+        "reasonForNotFixing": {
+            "type": "text"
+        },
+        "howAdded": {
+            "type": "enumeration",
+            "enum": [
+                "API",
+                "Import",
+                "Manual"
+            ]
+        },
+        "service": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "api::service.service",
+            "inversedBy": "issues"
+        },
+        "assignedTo": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "plugin::users-permissions.user"
+        },
+        "issue_comments": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::issue-comment.issue-comment",
+            "mappedBy": "issue"
+        }
+    }
+}

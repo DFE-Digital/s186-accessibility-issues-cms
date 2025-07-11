@@ -1,0 +1,29 @@
+{
+    "kind": "collectionType",
+    "collectionName": "issue_retest_comments",
+    "info": {
+        "singularName": "issue-retest-comment",
+        "pluralName": "issue-retest-comments",
+        "displayName": "Issue retest comment"
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "comment": {
+            "type": "text"
+        },
+        "issue_retest": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "api::issue-retest.issue-retest",
+            "inversedBy": "issue_retest_comments"
+        },
+        "addedBy": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "plugin::users-permissions.user"
+        }
+    }
+}

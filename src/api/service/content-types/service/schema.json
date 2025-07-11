@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "services",
+  "info": {
+    "singularName": "service",
+    "pluralName": "services",
+    "displayName": "Service"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "serviceId": {
+      "type": "biginteger",
+      "required": true,
+      "unique": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "fipsId": {
+      "type": "string",
+      "required": false
+    },
+    "service_urls": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::service-url.service-url",
+      "mappedBy": "service"
+    },
+    "issues": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::issue.issue",
+      "mappedBy": "service"
+    },
+    "statement_settings": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::statement-setting.statement-setting",
+      "mappedBy": "service"
+    }
+  }
+}
