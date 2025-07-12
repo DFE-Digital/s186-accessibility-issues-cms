@@ -1,27 +1,27 @@
 {
-    "kind": "collectionType",
-    "collectionName": "service_urls",
-    "info": {
-        "singularName": "service-url",
-        "pluralName": "service-urls",
-        "displayName": "Service Url"
+  "kind": "collectionType",
+  "collectionName": "service_urls",
+  "info": {
+    "singularName": "service-url",
+    "pluralName": "service-urls",
+    "displayName": "Service Url"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "url": {
+      "type": "string"
     },
-    "options": {
-        "draftAndPublish": true
+    "enrolledStatus": {
+      "type": "boolean"
     },
-    "pluginOptions": {},
-    "attributes": {
-        "url": {
-            "type": "string"
-        },
-        "enrolledStatus": {
-            "type": "boolean"
-        },
-        "service": {
-            "type": "relation",
-            "relation": "manyToOne",
-            "target": "api::service.service",
-            "inversedBy": "service_urls"
-        }
+    "service": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::service.service",
+      "inversedBy": "service_urls"
     }
+  }
 }

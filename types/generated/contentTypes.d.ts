@@ -581,6 +581,7 @@ export interface ApiServiceService extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     name: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
+    service_document_id: Schema.Attribute.String;
     service_urls: Schema.Attribute.Relation<
       'oneToMany',
       'api::service-url.service-url'

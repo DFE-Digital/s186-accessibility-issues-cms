@@ -41,6 +41,9 @@
       "relation": "oneToMany",
       "target": "api::statement-setting.statement-setting",
       "mappedBy": "service"
+    },
+    "service_document_id": {
+      "type": "string"
     }
   }
 }
