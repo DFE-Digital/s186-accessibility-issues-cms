@@ -571,6 +571,7 @@ export interface ApiServiceService extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    enrolled: Schema.Attribute.Boolean;
     fipsId: Schema.Attribute.String;
     issues: Schema.Attribute.Relation<'oneToMany', 'api::issue.issue'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
@@ -582,6 +583,7 @@ export interface ApiServiceService extends Struct.CollectionTypeSchema {
     name: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     service_document_id: Schema.Attribute.String;
+    service_url: Schema.Attribute.String;
     service_urls: Schema.Attribute.Relation<
       'oneToMany',
       'api::service-url.service-url'

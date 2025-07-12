@@ -44,6 +44,12 @@
     },
     "service_document_id": {
       "type": "string"
+    },
+    "enrolled": {
+      "type": "boolean"
+    },
+    "service_url": {
+      "type": "string"
     }
   }
 }
